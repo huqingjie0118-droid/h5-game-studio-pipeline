@@ -76,7 +76,8 @@ graph TD
    - **Unique Features**: Auction house, skill trees, boss phases.
 3. Provide 2–4 concise options for key design choices.
 4. Output structured `docs/GDD.md` (see [gdd-template.md](references/gdd-template.md)).
-5. **Gate 2**: User reviews and approves GDD.
+5. **Quality check**: Before Gate 2, verify the GDD passes the [design-principles.md](references/design-principles.md) sanity bars — a 30-second core loop exists, ≥2 Bartle player types are served, reward schedule is mixed, difficulty curve has early wins + breathing room.
+6. **Gate 2**: User reviews and approves GDD.
 
 ### Stage 3: AI Asset Generation (免费文生图自动生成)
 1. Spawn `art-director` to craft prompts based on `docs/GDD.md`.
@@ -85,11 +86,12 @@ graph TD
    - 16 Weapon Icons (`assets/weapons/<weaponType>.png`)
    - Skill Icons (`art-app/assets/icon_<skillId>.png`)
 3. Execute `python scripts/make_transparent.py` to produce clean PNG alpha channels.
-4. **Gate 3**: Verify image files exist, have non-zero size, and meet resolution specs.
+4. **Naming discipline**: Generate files following the [design-principles.md](references/design-principles.md) art naming convention (`[type]_[object]_[variant]_[state].png`) and folder layout, so Stage 4 integration is zero-touch mapping (see also [asset-mapping.md](references/asset-mapping.md)).
+5. **Gate 3**: Verify image files exist, have non-zero size, and meet resolution specs.
 
 ### Stage 4: Canvas 2D Integration (Canvas 2D 自动接入)
 1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md)).
-2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14).
+2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14). Also apply [design-principles.md](references/design-principles.md) perf/architecture rules — fixed-timestep loop, object pooling (P22), dirty-flag updates (P24), draw-call batching (P25), canvas state save/restore balance (P26), tab-hidden pause (P23).
 3. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
 4. Run automated registry check `node scripts/verify_integration.js` and logic tests.
 5. **Gate 4**: All logic tests and integration checks return 100% PASS.
@@ -146,6 +148,7 @@ graph TD
 - 📄 [asset-gen-spec.md](references/asset-gen-spec.md) — AI Text-to-Image prompt engineering & transparency spec.
 - 📄 [asset-mapping.md](references/asset-mapping.md) — Canvas 2D engine asset mapping & fallback spec.
 - 📄 [vercel-deploy.md](references/vercel-deploy.md) — Vercel serverless deployment & Turso DB guide.
-- ⚠️ [pitfalls.md](references/pitfalls.md) — Known pitfalls & best practices (UI lifecycle, Canvas/WebGL, assets, perf/memory, cross-browser/mobile, backend/deploy, toolchain). Consult before Stage 4 & 5.
+- ⚠️ [pitfalls.md](references/pitfalls.md) — Known pitfalls & best practices (UI lifecycle, Canvas/WebGL, assets, perf/memory, cross-browser/mobile, backend/deploy, toolchain). 30 entries (P01–P30). Consult before Stage 4 & 5.
+- 📐 [design-principles.md](references/design-principles.md) — Design/Art/Multiplayer principles (30-sec core loop, Bartle, art naming & pixel rules, architecture patterns, perf budget, server-authoritative netcode). Route to during Stage 2/3/4 for quality, not just pitfalls.
 - 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
 - ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.
