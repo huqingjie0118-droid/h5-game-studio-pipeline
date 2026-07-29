@@ -35,9 +35,11 @@
 3. Run test suites (`tools/_test_auction.js`, `tests/ui-panel-registry-check.js`).
 4. **Gate 4**: All logic & UI registry tests return 100% PASS.
 
-## Stage 5: Vercel Deployment (Vercel 部署)
-1. Spawn `release-ops-lead`.
+## Stage 5: Vercel Deployment (Vercel 部署与 Turso 云数据库)
+1. Spawn `release-ops-lead` (see `references/vercel-deploy.md`).
 2. Ensure `vercel.json` rewrite rules for `/api/(.*)` -> `api/index.js` are in place.
-3. Execute `npx vercel --prod` (or verify deployment configuration).
-4. Perform HTTP GET health check on deployed URL (`/api/health`).
-5. **Gate 5**: Online game URL is accessible, authenticated cloud save & auction house functional.
+3. Configure cloud database secrets in Vercel: `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN` (Turso LibSQL SQLite cloud instance).
+4. Verify server 3-tier fallback (`Turso Cloud` -> `node:sqlite` -> `db.json fallback`).
+5. Execute `npx vercel --prod`.
+6. Perform HTTP GET health check on deployed URL (`/api/health`).
+7. **Gate 5**: Online game URL is accessible, authenticated cloud save (`save:${userId}:${slot}`) and 5% gold sink auction house (`auctions` table) are fully functional.

@@ -93,12 +93,11 @@ graph TD
 3. Run automated registry check `node scripts/verify_integration.js` and logic tests.
 4. **Gate 4**: All logic tests and integration checks return 100% PASS.
 
-### Stage 5: Vercel Deployment (Vercel 自动化部署)
-1. Spawn `release-ops-lead` (see [vercel-deploy.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/vercel-deploy.md)).
-2. Verify `vercel.json` API rewrites (`/api/(.*)` -> `api/index.js`).
-3. Deploy via `npx vercel --prod` with cloud database secrets (`TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`).
-4. Perform HTTP GET health check on deployed endpoint (`/api/health`).
-5. **Gate 5**: Output live playable URL and confirm cloud save & auction house functionality.
+### Stage 5: Vercel Deployment & Cloud DB (Vercel 部署与 Turso 云数据库)
+- **Role**: `release-ops-lead`
+- **Action**: Configure `vercel.json` and environment variables (`TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`). Verify the server's 3-tier database fallback (`Turso LibSQL Cloud` -> `node:sqlite` -> `db.json fallback`). Execute `npx vercel --prod`.
+- **Deliverable**: Live production game link (e.g., `https://<app-name>.vercel.app`) with serverless cloud save (`save:${userId}:${slot}`) and auction house persistence.
+- **Gate 5**: HTTP GET health check on `/api/health` and verify cloud save/auction house functionality.
 
 ---
 
