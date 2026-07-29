@@ -68,14 +68,14 @@ graph TD
 4. **Gate 1**: Present the plan to the user. **Obtain explicit user approval before proceeding.**
 
 ### Stage 2: Grill-me GDD Ideation (grill-me 拆解)
-1. Spawn `design-strategist` in *grill-me* interview mode (see [grill-me-framework.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/grill-me-framework.md)).
+1. Spawn `design-strategist` in *grill-me* interview mode (see [grill-me-framework.md](references/grill-me-framework.md)).
 2. Conduct reverse questioning across 4 dimensions:
    - **Core Verb & Loop**: Combat, movement, idle progression, resources.
    - **Visual & Audio Aesthetic**: Dark fantasy, pixel art, cyberpunk, VFX.
    - **Progression & Economy**: Stat scaling, gear rarities, gold sinks.
    - **Unique Features**: Auction house, skill trees, boss phases.
 3. Provide 2–4 concise options for key design choices.
-4. Output structured `docs/GDD.md` (see [gdd-template.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/gdd-template.md)).
+4. Output structured `docs/GDD.md` (see [gdd-template.md](references/gdd-template.md)).
 5. **Gate 2**: User reviews and approves GDD.
 
 ### Stage 3: AI Asset Generation (免费文生图自动生成)
@@ -88,7 +88,7 @@ graph TD
 4. **Gate 3**: Verify image files exist, have non-zero size, and meet resolution specs.
 
 ### Stage 4: Canvas 2D Integration (Canvas 2D 自动接入)
-1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/asset-mapping.md)).
+1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md)).
 2. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
 3. Run automated registry check `node scripts/verify_integration.js` and logic tests.
 4. **Gate 4**: All logic tests and integration checks return 100% PASS.
@@ -137,12 +137,12 @@ graph TD
 
 ## Reference & Utility Guide
 
-- 📄 [studio-roles.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/studio-roles.md) — Detailed 7-role prompts & handoff contracts.
-- 📄 [phase-sop.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/phase-sop.md) — Complete 5-stage SOP & Quality Gate checklists.
-- 📄 [grill-me-framework.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/grill-me-framework.md) — Grill-me reverse interview framework & options guide.
-- 📄 [gdd-template.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/gdd-template.md) — Master Game Design Document Markdown template.
-- 📄 [asset-gen-spec.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/asset-gen-spec.md) — AI Text-to-Image prompt engineering & transparency spec.
-- 📄 [asset-mapping.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/asset-mapping.md) — Canvas 2D engine asset mapping & fallback spec.
-- 📄 [vercel-deploy.md](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/references/vercel-deploy.md) — Vercel serverless deployment & Turso DB guide.
-- 🐍 [make_transparent.py](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/scripts/make_transparent.py) — Automated PNG alpha transparency tool.
-- ⚡ [verify_integration.js](file:///C:/Users/hu397/.gemini/config/skills/h5-game-studio-pipeline/scripts/verify_integration.js) — Automated integration & asset registry check script.
+- 📄 [studio-roles.md](references/studio-roles.md) — Detailed 7-role prompts & handoff contracts.
+- 📄 [phase-sop.md](references/phase-sop.md) — Complete 5-stage SOP & Quality Gate checklists.
+- 📄 [grill-me-framework.md](references/grill-me-framework.md) — Grill-me reverse interview framework & options guide.
+- 📄 [gdd-template.md](references/gdd-template.md) — Master Game Design Document Markdown template.
+- 📄 [asset-gen-spec.md](references/asset-gen-spec.md) — AI Text-to-Image prompt engineering & transparency spec.
+- 📄 [asset-mapping.md](references/asset-mapping.md) — Canvas 2D engine asset mapping & fallback spec.
+- 📄 [vercel-deploy.md](references/vercel-deploy.md) — Vercel serverless deployment & Turso DB guide.
+- 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
+- ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.

@@ -3,6 +3,8 @@
 scripts/make_transparent.py
 Automated image background transparency script for AI-generated game assets.
 Removes solid black/white background colors and applies smooth alpha thresholding.
+
+Requirements: Pillow  (install with `pip install Pillow`)
 """
 
 import sys

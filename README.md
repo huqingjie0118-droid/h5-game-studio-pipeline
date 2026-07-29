@@ -27,8 +27,11 @@ Copy the `h5-game-studio-pipeline` directory into your agent skills location:
 # For Google Antigravity / Agentic coding tools:
 ~/.gemini/config/skills/h5-game-studio-pipeline/
 
-# For Claude Code / WorkBuddy:
+# For Claude Code:
 ~/.claude/skills/h5-game-studio-pipeline/
+
+# For WorkBuddy:
+~/.workbuddy/skills/h5-game-studio-pipeline/
 ```
 
 ### Usage
