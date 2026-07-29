@@ -89,12 +89,14 @@ graph TD
 
 ### Stage 4: Canvas 2D Integration (Canvas 2D 自动接入)
 1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md)).
-2. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
-3. Run automated registry check `node scripts/verify_integration.js` and logic tests.
-4. **Gate 4**: All logic tests and integration checks return 100% PASS.
+2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14).
+3. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
+4. Run automated registry check `node scripts/verify_integration.js` and logic tests.
+5. **Gate 4**: All logic tests and integration checks return 100% PASS.
 
 ### Stage 5: Vercel Deployment & Cloud DB (Vercel 部署与 Turso 云数据库)
 - **Role**: `release-ops-lead`
+- **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for serverless/static-site traps — no WS/cron (P17), static-site analytics snippet (P16), lockfile merge (P18), non-interactive git push auth (P19), cloud-save isolation (P15).
 - **Action**: Configure `vercel.json` and environment variables (`TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`). Verify the server's 3-tier database fallback (`Turso LibSQL Cloud` -> `node:sqlite` -> `db.json fallback`). Execute `npx vercel --prod`.
 - **Deliverable**: Live production game link (e.g., `https://<app-name>.vercel.app`) with serverless cloud save (`save:${userId}:${slot}`) and auction house persistence.
 - **Gate 5**: HTTP GET health check on `/api/health` and verify cloud save/auction house functionality.
@@ -144,5 +146,6 @@ graph TD
 - 📄 [asset-gen-spec.md](references/asset-gen-spec.md) — AI Text-to-Image prompt engineering & transparency spec.
 - 📄 [asset-mapping.md](references/asset-mapping.md) — Canvas 2D engine asset mapping & fallback spec.
 - 📄 [vercel-deploy.md](references/vercel-deploy.md) — Vercel serverless deployment & Turso DB guide.
+- ⚠️ [pitfalls.md](references/pitfalls.md) — Known pitfalls & best practices (UI lifecycle, Canvas/WebGL, assets, perf/memory, cross-browser/mobile, backend/deploy, toolchain). Consult before Stage 4 & 5.
 - 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
 - ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.
