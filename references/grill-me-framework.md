@@ -11,6 +11,17 @@ The **Grill-me Framework** is a structured, interactive reverse-questioning tech
 
 ---
 
+## Step 0 — Fun Hypothesis & Design Pillars (强制前置)
+
+Force out the two anchors **before any Tier question**. Do not proceed to Tier 1 until both exist.
+
+- **Fun Hypothesis**: One sentence completing "这游戏好玩的核心是 ____". If it cannot be written, the concept is not formed — keep probing raw verbs in Tier 1, never jump to systems/economy.
+  - ✗ "一个修仙放置游戏" — that is a genre, not fun.
+  - ✓ "好玩的核心是——用最低操作成本看到数值滚雪球式的膨胀反馈."
+- **Design Pillars**: Derive 3–5 *falsifiable experience statements* from the hypothesis. Every later mechanic and number is filtered through them; a new system serving no pillar is cut or redone.
+
+For the full procedural method — three-layer loop, economy ledger, tuning discipline, juice spec, system matrix, failure signals — load `references/systems-mechanics.md`.
+
 ## 4-Tier Interviewing Matrix
 
 ### Tier 1: Core Verb & Game Loop (Mechanics)
@@ -56,3 +67,16 @@ The **Grill-me Framework** is a structured, interactive reverse-questioning tech
 ## Output Contract
 
 Upon completing the interview, output the finalized GDD using the standard template in `references/gdd-template.md` and save it to `docs/GDD.md`.
+
+## Exit Criteria (访谈完成判定)
+
+The grill-me interview is DONE only when ALL hold:
+
+1. **Fun Hypothesis** written and it implies ≥1 testable player decision.
+2. **3–5 Design Pillars** set, each falsifiable.
+3. **Three-layer core loop** drafted (moment / session / long-term) — see `systems-mechanics.md §3`.
+4. **Economy Sources/Sinks ledger** balanced (every resource has a sink) — see `systems-mechanics.md §5`.
+5. **Key numbers** carry a rationale or are tagged `[PLACEHOLDER]` — see `systems-mechanics.md §6`.
+6. **System interaction matrix** seeded (top pairs flagged intended/acceptable/bug) — see `systems-mechanics.md §8`.
+
+If any fails, keep interviewing or patch the GDD — do not pass Gate 2.

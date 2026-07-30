@@ -57,6 +57,7 @@ h5-game-studio-pipeline/
 │   ├── studio-roles.md               # Studio 7-Role Architecture & Subagent Routing
 │   ├── phase-sop.md                  # 5-Stage SOP & Quality Gates (Gate 1~5)
 │   ├── grill-me-framework.md         # Reverse Interviewing Protocol
+│   ├── systems-mechanics.md          # 游戏系统与机制设计模块 (Fun Hypothesis→Pillars→Loop→Economy→Tuning→Juice→Matrix→Signals)
 │   ├── gdd-template.md               # Master Game Design Document Template
 │   ├── asset-gen-spec.md             # AI Asset Generation & Prompting Standards
 │   ├── asset-mapping.md              # Canvas 2D Engine Asset Mapping Guide
