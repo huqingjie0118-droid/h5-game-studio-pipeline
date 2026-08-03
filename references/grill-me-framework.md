@@ -32,6 +32,10 @@ For the full procedural method — three-layer loop, economy ledger, tuning disc
 ### Tier 2: World & Visual/Audio Aesthetic (Aesthetics)
 - **Art Direction**: Pixel art retro, Dark fantasy glassmorphism, Vector anime, Minimalist neon?
 - **World & Map Structure**: Seamless single map with safe/wild/boss zones, Level-based stage select, or Infinite scrolling dungeon?
+- **Level Shape Language**: Linear corridor (pacing-driven), Hub & spokes (choice-driven), Open field (exploration-driven), or Labyrinth (deliberate disorientation)? *(形状由玩法决定，不由美术主题决定——见 `references/level-design.md §2`)*
+- **Pacing Preference**: Relentless tension (action), Alternating tension/release (adventure), or Explore-then-explode (survival/roguelike)? *(对应 `level-design.md §3` 的弧线类型)*
+- **Mechanic Teaching Style**: Environment-only teaching (no text popups), Light tutorial overlays, or Skip teaching (assume player knowledge)? *(决定 `level-design.md §8` 空间教学阶梯的强度)*
+- **Exploration Reward Density**: Dense (every corner has loot), Sparse (rewards are landmarks), or Hidden-optional (rewards require backtracking)?
 - **VFX & Juice**: Screen shake, floating combat text (FCT), particle trails, boss break-bar animations?
 
 ### Tier 3: Progression, Stats & Economy (Dynamics)
@@ -78,5 +82,11 @@ The grill-me interview is DONE only when ALL hold:
 4. **Economy Sources/Sinks ledger** balanced (every resource has a sink) — see `systems-mechanics.md §5`.
 5. **Key numbers** carry a rationale or are tagged `[PLACEHOLDER]` — see `systems-mechanics.md §6`.
 6. **System interaction matrix** seeded (top pairs flagged intended/acceptable/bug) — see `systems-mechanics.md §8`.
+7. **Level Intent** written and it implies ≥1 unique, non-reusable layout decision — see `level-design.md §1`.
+8. **Shape Language** annotated per segment (Linear/Hub/Open/Labyrinth) — see `level-design.md §2`.
+9. **Pacing Chart** has no flatline (tension varies; peak preceded by a difficulty ramp) — see `level-design.md §3`.
+10. **Flow Diagram** drawn: every fork has a visible optional reward + merge point; no true dead ends — see `level-design.md §4`.
+11. **Encounter Table** filled: every encounter has entry read time, ≥2 tactical options, and a fallback position — see `level-design.md §5`.
+12. **Navigation readability checklist** all boxes ticked (3-second exit test, light guidance, no fake-exit dead ends) — see `level-design.md §6`.
 
 If any fails, keep interviewing or patch the GDD — do not pass Gate 2.

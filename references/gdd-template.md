@@ -44,10 +44,57 @@
 ---
 
 ## 4. Level & Map Design
-- **World Layout**:
-  1. *Safe Zone (主城安全区)*: NPC Traders, Quest Board, Auction House.
-  2. *Wild Region (野外练级区)*: Spawning creeps, elites, chest events.
-  3. *Boss Domain (Boss 禁地)*: High difficulty Boss with interruptible phase cast-bars.
+> 完整方法论见 `references/level-design.md`。以下每一项都是 Gate 2 检查项，缺一项 = GDD 不完整。
+
+### 4.1 Level Intent（关卡意图）
+- **Player Fantasy**: [一句话：玩家走出这关时心里装着什么感受；必须推导出 ≥1 个本关独有的布局决策，否则这关没有存在理由]
+- **记忆点 (Must-Remember Moment)**: [本关唯一的高潮/记忆场景，如"从猎手变猎物"的倒转]
+
+### 4.2 Shape Language（形状语言）
+- **整体形状**: [Linear / Hub / Open / Labyrinth —— 由 Fun Hypothesis 决定，不由美术主题决定]
+- **分段形状**（混合时必填）: [如 线性开场 → 枢纽中段 → 线性高潮；每段显式标注]
+
+### 4.3 Pacing Arc（节奏弧线）
+- **弧线**: `Tension → Release → Escalation → Climax → Resolution`（不许平线；高潮前必须有强度阶梯）
+- **Pacing Chart**:
+
+```
+Time   | Activity Type | Tension | Notes
+-------|---------------|---------|------------------------------
+[0:00] | [叙事/探索]   | [Low]   | [本段服务什么意图]
+[1:30] | [遭遇 E01]    | [Med]   | [教学/机制实例]
+...    | ...           | ...     | ...
+```
+
+### 4.4 Flow Diagram（流程图）
+```
+[Entry] → [T] → [E01] → [J01] ──→ [主线…]
+                              ├──→ [R01 支线奖励·必须从岔路可见]
+                              └──→ [Merge] → [E04 高潮] → [Exit]
+```
+- **黄金法则**: 每条岔路 = 1 条明显主线 + 1 条奖励可见的支线；支线出口必须回汇主线；禁真死路。
+
+### 4.5 Encounter Table（遭遇清单）
+> 每个遭遇必须: Entry Read Time（先看见再被伤害） + ≥2 战术选项 + Fallback Position。难度空间优先，数值兜底。
+
+| ID | 类型 | 敌数 | 战术选项 | 撤退位 | 服务意图 | 教学点 |
+|----|------|------|----------|--------|----------|--------|
+| E01 | [教学遭遇] | [2] | [逐个引/卡门] | [入口门洞] | [教引怪] | [T1] |
+| E04 | [Boss 房] | [1+Boss] | [绕柱/高空位] | [Boss 房门] | [高潮记忆点] | [综合应用] |
+
+### 4.6 Navigation Readability Checklist（可读性清单 · Gate 2 必查）
+- [ ] 每个房间 3 秒内可指出主线出口方向（3 秒出口测试）
+- [ ] 主线光照强度 > 支线
+- [ ] 无"看起来像出口的真死路"
+- [ ] 岔路处支线奖励可见（诱惑设计成立）
+- [ ] 大型区域入口有 Prospect 观察位（安全背靠的高地/平台）
+- [ ] 引导用光照/颜色/几何，不依赖小地图与箭头贴纸
+
+### 4.7 Environmental Storytelling（环境叙事节拍）
+- [每个房间 1 个叙事节拍，三问法：① 最后一个人离开时是什么状态 ② 道具为何在此位置 ③ 服务哪条 Pillar。禁止纯装饰空房间]
+
+### 4.8 Blockout Spec（房间规格 · 给 Stage 3/4 的交接单）
+> 每个核心房间一张，模板见 `references/level-design.md §9`：尺寸 / 功能 / 形状角色 / 掩体地形 / 光照（主光指向出口）/ 入口出口（3 秒可见?）/ 叙事节拍 / 性能注记（同屏对象峰值、对象池需求）。
 
 ---
 

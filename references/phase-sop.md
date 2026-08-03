@@ -14,7 +14,7 @@
    - Progression & Num System (Level caps, Stat scaling, Equipment rarity)
    - Special Mechanics (Auction house, Skill tree, Boss mechanics)
 3. Write complete `docs/GDD.md`.
-4. **Gate 2**: User reviews and approves `GDD.md`. Before approval, verify the design gates from `references/systems-mechanics.md`: Fun Hypothesis exists, 3–5 Pillars set, three-layer loop drafted, Sources/Sinks ledger balanced, key numbers have rationale or `[PLACEHOLDER]`.
+4. **Gate 2**: User reviews and approves `GDD.md`. Before approval, verify the design gates from `references/systems-mechanics.md`: Fun Hypothesis exists, 3–5 Pillars set, three-layer loop drafted, Sources/Sinks ledger balanced, key numbers have rationale or `[PLACEHOLDER]`. **Additionally verify the level design gates from `references/level-design.md`**: Level Intent written (implies ≥1 unique layout decision), Shape Language annotated per segment, Pacing Chart has no flatline, Flow Diagram drawn (every fork has visible reward + merge, no true dead ends), Encounter Table complete (every encounter has entry read time + ≥2 tactical options + fallback position), navigation readability checklist all ticked.
 
 ## Stage 3: Asset Generation (免费文生图)
 1. Read `docs/免费文生图.md` and GDD requirements.

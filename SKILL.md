@@ -78,7 +78,8 @@ graph TD
 4. Output structured `docs/GDD.md` (see [gdd-template.md](references/gdd-template.md)).
 5. **Quality check**: Before Gate 2, verify the GDD passes both:
    - the [design-principles.md](references/design-principles.md) sanity bars — a 30-second core loop exists, ≥2 Bartle player types are served, reward schedule is mixed, difficulty curve has early wins + breathing room;
-   - the [systems-mechanics.md](references/systems-mechanics.md) design gates — a **Fun Hypothesis** is written, **3–5 Design Pillars** filter decisions, the **three-layer core loop** (moment/session/long-term) is drafted, the **Sources/Sinks ledger** is balanced (every resource has a sink), and key numbers carry a rationale or `[PLACEHOLDER]`.
+   - the [systems-mechanics.md](references/systems-mechanics.md) design gates — a **Fun Hypothesis** is written, **3–5 Design Pillars** filter decisions, the **three-layer core loop** (moment/session/long-term) is drafted, the **Sources/Sinks ledger** is balanced (every resource has a sink), and key numbers carry a rationale or `[PLACEHOLDER]`;
+   - the [level-design.md](references/level-design.md) level gates — **Level Intent** written (implies ≥1 unique layout decision), **Shape Language** annotated per segment, **Pacing Chart** has no flatline, **Flow Diagram** drawn (every fork has visible reward + merge, no true dead ends), **Encounter Table** complete (read time + ≥2 tactics + fallback per encounter), **navigation readability checklist** all ticked.
 6. **Gate 2**: User reviews and approves GDD.
 
 ### Stage 3: AI Asset Generation (免费文生图自动生成)
@@ -111,7 +112,7 @@ graph TD
 
 | Trigger Keyword / Focus | Spawn Target | Primary Deliverable |
 |-------------------------|--------------|---------------------|
-| GDD, 概念, 创意, grill-me, 关卡, 数值, 叙事 | `design-strategist` | System & Game Design, GDD, Grill-me Interview |
+| GDD, 概念, 创意, grill-me, 关卡, 地图, 流程, 节奏, 遭遇, 数值, 叙事 | `design-strategist` | System & Game Design, GDD, Grill-me Interview, **Level Design** (see `references/level-design.md`) |
 | 架构, 引擎, 代码, 性能, 集成, 接入 | `engineering-lead` | Code Architecture, Canvas 2D Engine Integration |
 | 美术, 视觉, 资产规格, 特效, 图标 | `art-director` | Art Specs & `agnes-ai` Image Generation |
 | 音乐, 音效, 混音 | `audio-director` | SFX & BGM Implementation Strategy |
@@ -153,5 +154,6 @@ graph TD
 - ⚠️ [pitfalls.md](references/pitfalls.md) — Known pitfalls & best practices (UI lifecycle, Canvas/WebGL, assets, perf/memory, cross-browser/mobile, backend/deploy, toolchain). 30 entries (P01–P30). Consult before Stage 4 & 5.
 - 📐 [design-principles.md](references/design-principles.md) — Design/Art/Multiplayer principles (30-sec core loop, Bartle, art naming & pixel rules, architecture patterns, perf budget, server-authoritative netcode). Route to during Stage 2/3/4 for quality, not just pitfalls.
 - 🧩 [systems-mechanics.md](references/systems-mechanics.md) — **游戏系统与机制设计模块**（程序性方法论：Fun Hypothesis → Design Pillars → 三层核心循环 → 机制活检 → 经济 Sources/Sinks 账本 → 数值 Tuning 纪律 → Juice 规格 → 系统交互矩阵 → Playtest 失败信号）。Stage 2 `design-strategist` 主路由，Gate 2 必查。
+- 🗺️ [level-design.md](references/level-design.md) — **游戏关卡设计模块**（程序性空间设计方法论：Level Intent → Shape Language → Pacing Arc → Flow Diagram → Encounter Design → Navigation Readability → Environmental Storytelling → 空间教学阶梯 → Blockout Spec → H5 约束 → 关卡 Playtest 失败信号）。与 systems-mechanics.md 并列主路由，Gate 2 必查。
 - 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
 - ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.

@@ -7,7 +7,7 @@
 
 ## 一、游戏设计（Stage 2 · GDD 质量 · 准线/PASS 长什么样）
 
-> 本节约等于**质量准线**（Gate 2 看这些是否 PASS）。**怎么严谨地设计**见 `references/systems-mechanics.md`（Fun Hypothesis → Pillars → 三层循环 → 经济账本 → 数值纪律 → Juice → 交互矩阵 → 失败信号）。两文件互补：本文件管"做到什么标准"，systems-mechanics.md 管"怎么做"。
+> 本节约等于**质量准线**（Gate 2 看这些是否 PASS）。**怎么严谨地设计**见 `references/systems-mechanics.md`（系统/机制/数值）与 `references/level-design.md`（关卡空间/流程/遭遇）。两文件互补：本文件管"做到什么标准"，systems-mechanics.md 管"系统怎么做"，level-design.md 管"关卡空间怎么做"。
 
 ### 1. 30 秒核心循环测试
 每个游戏必须有一个"好玩的 30 秒循环"：**行动 → 反馈 → 奖励 → 重复**。
