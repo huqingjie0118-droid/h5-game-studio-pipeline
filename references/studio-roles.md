@@ -13,9 +13,10 @@ The studio operates on a 1 Orchestrator + 6 Specialist model.
 - **Outputs**: `docs/GDD.md`
 
 ## 3. engineering-lead (程基岩 - 技术主理与代码)
-- **Role**: Chief Architect & Game Developer
-- **Tasks**: Canvas 2D engine integration, asset loading logic in `config.js`, API gateway implementation, test execution.
-- **Outputs**: Code modifications, runnable game state.
+- **Role**: Chief Architect, Game Developer & Engine Performance Lead
+- **Tasks**: Canvas 2D engine integration, asset loading logic in `config.js`, API gateway implementation, test execution, **engine & performance** — fixed-timestep loop & interpolation (`engine-optimization.md` §1), performance budget table stood up day 1 (§2), profile-before-optimize SOP (§3), object pooling / dirty flags / spatial-hash collision (§5), progressive loading ≤2MB first paint (§7), dt clamp & background pause (§8), performance HUD (§9), benchmark scenes & regression gates (§10).
+- **Outputs**: Code modifications, runnable game state, performance budget table (`docs/PERFORMANCE.md`), benchmark measurements & Gate 4 engine verdict.
+- **Tech-art partnership**: owns the engine-side frame budget & code paths; art-director owns the visual-layer budget & asset prep — two halves of one performance plan (总账 vs 分账).
 
 ## 4. art-director (林绘澄 - 美术总监)
 - **Role**: Visual Director, Asset Production Lead & Technical Artist

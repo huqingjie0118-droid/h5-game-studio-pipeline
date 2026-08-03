@@ -33,7 +33,7 @@
    - `SKILLS[id].img = 'art-app/assets/icon_<name>.png'`
 2. Ensure rendering fallback logic (`getEquipmentIconHTML`) functions correctly.
 3. Run test suites (`tools/_test_auction.js`, `tests/ui-panel-registry-check.js`).
-4. **Gate 4**: All logic & UI registry tests return 100% PASS **plus the tech-art render checklist** (`tech-art.md` §10 Gate 4): per-frame drawImage / source-switch / particle / additive counts within budget, zero `filter` / `shadowBlur`, static layers pre-baked, pixel-art integer scaling & HD dpr ≤2, low-tier degradation profile holds 30FPS.
+4. **Gate 4**: All logic & UI registry tests return 100% PASS **plus the tech-art render checklist** (`tech-art.md` §10 Gate 4): per-frame drawImage / source-switch / particle / additive counts within budget, zero `filter` / `shadowBlur`, static layers pre-baked, pixel-art integer scaling & HD dpr ≤2, low-tier degradation profile holds 30FPS. **Plus the engine performance gate** (`engine-optimization.md` §10): benchmark scenes measured (main city / boss peak / bullet hell / background switch) — FPS mean & P1 within the day-1 budget table (§2), no perf regression vs baseline, first-paint ≤2MB, texture memory within budget, no GC stalls (object pooling effective), dt clamp & background pause verified.
 
 ## Stage 5: Vercel Deployment (Vercel 部署与 Turso 云数据库)
 1. Spawn `release-ops-lead` (see `references/vercel-deploy.md`).

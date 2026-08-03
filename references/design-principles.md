@@ -7,7 +7,7 @@
 
 ## 一、游戏设计（Stage 2 · GDD 质量 · 准线/PASS 长什么样）
 
-> 本节约等于**质量准线**（Gate 2 看这些是否 PASS）。**怎么严谨地设计**见 `references/systems-mechanics.md`（系统/机制/数值）、`references/level-design.md`（关卡空间/流程/遭遇）、`references/narrative-design.md`（叙事/角色/对话）与 `references/tech-art.md`（资产规格/渲染方案/VFX/性能预算）。五文件互补：本文件管"做到什么标准"，systems-mechanics.md 管"系统怎么做"，level-design.md 管"关卡空间怎么做"，narrative-design.md 管"叙事意义怎么做"，tech-art.md 管"视觉层怎么做（Canvas 2D 实现与预算）"。
+> 本节约等于**质量准线**（Gate 2 看这些是否 PASS）。**怎么严谨地设计**见 `references/systems-mechanics.md`（系统/机制/数值）、`references/level-design.md`（关卡空间/流程/遭遇）、`references/narrative-design.md`（叙事/角色/对话）、`references/tech-art.md`（资产规格/渲染方案/VFX/预算）与 `references/engine-optimization.md`（引擎架构/逻辑物理/内存/加载/性能流程）。六文件互补：本文件管"做到什么标准"，systems-mechanics.md 管"系统怎么做"，level-design.md 管"关卡空间怎么做"，narrative-design.md 管"叙事意义怎么做"，tech-art.md 管"视觉层怎么做"，engine-optimization.md 管"引擎层怎么跑（性能/帧率/加载）"。
 
 ### 1. 30 秒核心循环测试
 每个游戏必须有一个"好玩的 30 秒循环"：**行动 → 反馈 → 奖励 → 重复**。

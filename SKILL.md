@@ -95,10 +95,10 @@ graph TD
 
 ### Stage 4: Canvas 2D Integration (Canvas 2D 自动接入)
 1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md) — atlas JSON slices become the new mapping entry per [tech-art.md](references/tech-art.md) §3.1).
-2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14). Also apply [design-principles.md](references/design-principles.md) perf/architecture rules — fixed-timestep loop, object pooling (P22), dirty-flag updates (P24), draw-call batching (P25), canvas state save/restore balance (P26), tab-hidden pause (P23). **And apply [tech-art.md](references/tech-art.md) rendering rules** — pre-bake static layers & lightmaps (§3–§4), zero `filter`/`shadowBlur` (§1), additive layer caps (§4.2), per-platform effect tiers (§5), budget table checks (§6).
+2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14). Also apply [design-principles.md](references/design-principles.md) perf/architecture rules — fixed-timestep loop, object pooling (P22), dirty-flag updates (P24), draw-call batching (P25), canvas state save/restore balance (P26), tab-hidden pause (P23). **And apply [tech-art.md](references/tech-art.md) rendering rules** — pre-bake static layers & lightmaps (§3–§4), zero `filter`/`shadowBlur` (§1), additive layer caps (§4.2), per-platform effect tiers (§5), budget table checks (§6). **And apply [engine-optimization.md](references/engine-optimization.md) engine rules** — fixed-timestep loop + interpolation (§1.1), performance budget table stood up on day 1 (§2), profile-before-optimize SOP (§3), object pooling & dirty flags (§5.1–5.2), spatial-hash collision for >50 entities (§5.3), progressive loading ≤2MB first paint (§7), dt clamp + background pause (§8.1), performance HUD (§9), benchmark scenes for regression (§10).
 3. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
 4. Run automated registry check `node scripts/verify_integration.js` and logic tests.
-5. **Gate 4**: All logic tests and integration checks return 100% PASS **plus the tech-art render performance checklist** ([tech-art.md](references/tech-art.md) §10 Gate 4): per-frame drawImage/source-switch/particle/additive counts within budget, zero filter/shadowBlur, static layers pre-baked, pixel-art integer scaling & HD dpr ≤2, low-tier profile holds 30FPS.
+5. **Gate 4**: All logic tests and integration checks return 100% PASS **plus the tech-art render performance checklist** ([tech-art.md](references/tech-art.md) §10 Gate 4): per-frame drawImage/source-switch/particle/additive counts within budget, zero filter/shadowBlur, static layers pre-baked, pixel-art integer scaling & HD dpr ≤2, low-tier profile holds 30FPS. **Plus the engine performance gate** ([engine-optimization.md](references/engine-optimization.md) §10): benchmark scenes (main city / boss peak / bullet hell / background switch) measured — FPS mean & P1 within budget, no perf regression vs baseline, first-paint ≤2MB, memory within budget, GC stalls absent.
 
 ### Stage 5: Vercel Deployment & Cloud DB (Vercel 部署与 Turso 云数据库)
 - **Role**: `release-ops-lead`
@@ -114,7 +114,7 @@ graph TD
 | Trigger Keyword / Focus | Spawn Target | Primary Deliverable |
 |-------------------------|--------------|---------------------|
 | GDD, 概念, 创意, grill-me, 关卡, 地图, 流程, 节奏, 遭遇, 数值, 叙事, 剧情, 角色, 对话, 世界观 | `design-strategist` | System & Game Design, GDD, Grill-me Interview, **Level Design** (see `references/level-design.md`), **Narrative Design** (see `references/narrative-design.md`) |
-| 架构, 引擎, 代码, 性能, 集成, 接入 | `engineering-lead` | Code Architecture, Canvas 2D Engine Integration |
+| 架构, 引擎, 代码, 性能, 集成, 接入, 帧率, 加载, 内存, 优化, 卡顿 | `engineering-lead` | Code Architecture, Canvas 2D Engine Integration, **Engine & Performance Optimization** (see `references/engine-optimization.md`) |
 | 美术, 视觉, 资产规格, 特效, 图标, 图集, 材质, 渲染, 粒子, 性能优化, 技术美术 | `art-director` | Art Specs & `agnes-ai` Image Generation, **Technical Art** (see `references/tech-art.md`) — 渲染方案/VFX 实现/资产预算，`engineering-lead` 配合实现 |
 | 音乐, 音效, 混音 | `audio-director` | SFX & BGM Implementation Strategy |
 | 测试, 冒烟, 回归, 质量门 | `quality-lead` | Test Suite Execution & Gate Verdicts |
@@ -145,6 +145,7 @@ graph TD
 
 ## Reference & Utility Guide
 
+- 🧭 [design-module-overview.md](references/design-module-overview.md) — **五模块协同总览（第一查阅点）**：五层流水线图、模块速查卡、跨角色交接契约、Gate 1–5 全部质量门汇总、协同执行五纪律。Stage 1 路由时先读本文件选对模块，再进各模块细节。
 - 📄 [studio-roles.md](references/studio-roles.md) — Detailed 7-role prompts & handoff contracts.
 - 📄 [phase-sop.md](references/phase-sop.md) — Complete 5-stage SOP & Quality Gate checklists.
 - 📄 [grill-me-framework.md](references/grill-me-framework.md) — Grill-me reverse interview framework & options guide.
@@ -158,5 +159,6 @@ graph TD
 - 🗺️ [level-design.md](references/level-design.md) — **游戏关卡设计模块**（程序性空间设计方法论：Level Intent → Shape Language → Pacing Arc → Flow Diagram → Encounter Design → Navigation Readability → Environmental Storytelling → 空间教学阶梯 → Blockout Spec → H5 约束 → 关卡 Playtest 失败信号 → §12 可复用模式库 → §13 完整示例关卡 → §14 关卡×系统×数值联动检查）。与 systems-mechanics.md 并列主路由，Gate 2 必查。
 - 📖 [narrative-design.md](references/narrative-design.md) — **游戏叙事设计模块**（程序性叙事方法论：Narrative Core → 角色架构（Desire/Need + Voice Pillars）→ 叙事节拍图 → 叙事×玩法对齐矩阵 → 对话规范 → Lore 三层交付 → 环境叙事一致性 → 叙事张力注入点 → H5 叙事约束 → 叙事 Playtest 失败信号 → **§11 可复用叙事模式库 → §12 完整示例叙事章节 → §13 叙事×系统×关卡三方联动检查**）。与 systems-mechanics / level-design 并列主路由，Gate 2 必查。
 - 🎨 [tech-art.md](references/tech-art.md) — **技术美术设计模块**（Canvas 2D 视觉层方法论：渲染成本模型 → 资产技术规格（尺寸/内存/格式）→ 精灵图集与预烘焙 → 无光照氛围方案（lightmap/混合模式/overlay）→ VFX 效果-实现-成本矩阵 → 美术性能预算表 → 像素/HD 双轨 → 色彩技术 → 移动端降级档位 → Gate 3/4 技术审查清单）。Stage 3/4 `art-director` 主路由 + `engineering-lead` 配合，Gate 3/4 必查。
+- ⚙️ [engine-optimization.md](references/engine-optimization.md) — **游戏引擎与性能优化模块**（Canvas 2D 引擎层方法论：引擎架构基线（固定步长/输入抽象/状态管理）→ 性能预算总账 → Profiling SOP（先量后改）→ 渲染优化（合批/离屏缓存/裁剪）→ 逻辑物理优化（对象池/脏标记/空间哈希/AI 分帧）→ 内存管理 → 加载性能 → 帧率稳定与移动端 → 性能监控 HUD → 基准场景与性能回归）。Stage 4 `engineering-lead` 主路由，Gate 4 必查。
 - 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
 - ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.

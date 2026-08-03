@@ -11,9 +11,9 @@ An open-source, studio-grade agentic workflow skill for AI coding assistants (Go
 
 1. **Studio Orchestrator Model**: Producer lead manages 6 specialist subagents (`design-strategist`, `art-director`, `engineering-lead`, etc.) with strict Hand-off Contracts.
 2. **Grill-me Reverse Interviewing**: Interactively decomposes vague game prompts into a structured Game Design Document (`docs/GDD.md`).
-3. **Four Procedural Design Modules**: 系统与机制 (`systems-mechanics.md`)、关卡空间 (`level-design.md`)、叙事意义 (`narrative-design.md`)、技术美术 (`tech-art.md`)——每个模块自带执行顺序铁律、模板与质量门检查项。
+3. **Five Procedural Modules**: 系统与机制 (`systems-mechanics.md`)、关卡空间 (`level-design.md`)、叙事意义 (`narrative-design.md`)、技术美术 (`tech-art.md`)、引擎性能 (`engine-optimization.md`)——每个模块自带执行顺序铁律、模板与质量门检查项。
 4. **AI Text-to-Image Pipeline**: Batch-generates character sprites, weapon PNGs, and skill badges via `agnes-ai` free image generation protocol.
-5. **Canvas 2D Engine Integration**: Automatically maps generated images to `config.js` rendering loops with PNG ➔ SVG ➔ Emoji fallbacks.
+5. **Canvas 2D Engine Integration**: Automatically maps generated images to `config.js` rendering loops with PNG ➔ SVG ➔ Emoji fallbacks, plus performance budget tables, profiling SOP and benchmark regression gates.
 6. **Serverless Cloud Deployment**: One-command Vercel production deployment with LibSQL database cloud persistence & environment secret safety.
 
 ---
@@ -55,6 +55,7 @@ h5-game-studio-pipeline/
 ├── LICENSE                           # MIT License
 ├── README.md                         # Documentation
 ├── references/
+│   ├── design-module-overview.md     # 五模块协同总览 (Pipeline→Module Cards→Handoffs→All Gates→Discipline)
 │   ├── studio-roles.md               # Studio 7-Role Architecture & Subagent Routing
 │   ├── phase-sop.md                  # 5-Stage SOP & Quality Gates (Gate 1~5)
 │   ├── grill-me-framework.md         # Reverse Interviewing Protocol
@@ -62,6 +63,7 @@ h5-game-studio-pipeline/
 │   ├── level-design.md               # 游戏关卡设计模块 (Intent→Shape→Pacing→Flow→Encounter→Readability→Storytelling→Blockout→Patterns→Cross-check)
 │   ├── narrative-design.md           # 游戏叙事设计模块 (Core→Characters→Beats→Alignment→Dialogue→Lore→Patterns→Cross-check)
 │   ├── tech-art.md                   # 技术美术设计模块 (Cost Model→Asset Specs→Atlas→Lighting→VFX→Budget→Pixel/HD→Mobile Tiers→Gate Reviews)
+│   ├── engine-optimization.md        # 游戏引擎与性能优化模块 (Baseline→Budget→Profiling→Render/Logic→Memory→Loading→FPS→HUD→Benchmarks)
 │   ├── design-principles.md          # Design/Art/Multiplayer Principles & Quality Bars
 │   ├── pitfalls.md                   # Known Pitfalls & Best Practices (P01~P30)
 │   ├── gdd-template.md               # Master Game Design Document Template
