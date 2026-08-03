@@ -79,25 +79,26 @@ graph TD
 5. **Quality check**: Before Gate 2, verify the GDD passes both:
    - the [design-principles.md](references/design-principles.md) sanity bars — a 30-second core loop exists, ≥2 Bartle player types are served, reward schedule is mixed, difficulty curve has early wins + breathing room;
    - the [systems-mechanics.md](references/systems-mechanics.md) design gates — a **Fun Hypothesis** is written, **3–5 Design Pillars** filter decisions, the **three-layer core loop** (moment/session/long-term) is drafted, the **Sources/Sinks ledger** is balanced (every resource has a sink), and key numbers carry a rationale or `[PLACEHOLDER]`;
-   - the [level-design.md](references/level-design.md) level gates — **Level Intent** written (implies ≥1 unique layout decision), **Shape Language** annotated per segment, **Pacing Chart** has no flatline, **Flow Diagram** drawn (every fork has visible reward + merge, no true dead ends), **Encounter Table** complete (read time + ≥2 tactics + fallback per encounter), **navigation readability checklist** all ticked.
+   - the [level-design.md](references/level-design.md) level gates — **Level Intent** written (implies ≥1 unique layout decision), **Shape Language** annotated per segment, **Pacing Chart** has no flatline, **Flow Diagram** drawn (every fork has visible reward + merge, no true dead ends), **Encounter Table** complete (read time + ≥2 tactics + fallback per encounter), **navigation readability checklist** all ticked;
+   - the [narrative-design.md](references/narrative-design.md) narrative gates — **Narrative Core** written (theme question + logline + pillars), **Protagonist Desire/Need conflict** set, **Beat Sheet** with a gameplay delivery point per beat, **Alignment Matrix** with no empty rows (every beat ≥1 gameplay consequence), **dialogue sample** passes Voice Pillars (real-person test, no as-you-know), **Tier 1 critical path** comprehensible without optional content, **World Bible** free of internal contradictions.
 6. **Gate 2**: User reviews and approves GDD.
 
 ### Stage 3: AI Asset Generation (免费文生图自动生成)
-1. Spawn `art-director` to craft prompts based on `docs/GDD.md`.
+1. Spawn `art-director` to craft prompts based on `docs/GDD.md`. **Tech-spec first**: before generating, lock asset dimensions & texture memory budget per [tech-art.md](references/tech-art.md) §2, and plan atlas/pre-bake assets per §3–§4 (icons/effects into `fx.atlas`/`ui.atlas`, baked lightmaps & glows pre-rendered).
 2. Invoke `agnes-ai` skill (`agnes-image-2.1-flash`) to generate:
    - Character Class Avatars (`art-app/assets/<class>_front.png`)
    - 16 Weapon Icons (`assets/weapons/<weaponType>.png`)
    - Skill Icons (`art-app/assets/icon_<skillId>.png`)
 3. Execute `python scripts/make_transparent.py` to produce clean PNG alpha channels.
 4. **Naming discipline**: Generate files following the [design-principles.md](references/design-principles.md) art naming convention (`[type]_[object]_[variant]_[state].png`) and folder layout, so Stage 4 integration is zero-touch mapping (see also [asset-mapping.md](references/asset-mapping.md)).
-5. **Gate 3**: Verify image files exist, have non-zero size, and meet resolution specs.
+5. **Gate 3**: Verify image files exist, have non-zero size, and meet resolution specs **plus the tech-art asset spec checklist** ([tech-art.md](references/tech-art.md) §10 Gate 3): sizes follow the dimension ladder, texture memory within budget, naming compliant, atlas planned, pre-bake assets generated, VFX spec table filled.
 
 ### Stage 4: Canvas 2D Integration (Canvas 2D 自动接入)
-1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md)).
-2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14). Also apply [design-principles.md](references/design-principles.md) perf/architecture rules — fixed-timestep loop, object pooling (P22), dirty-flag updates (P24), draw-call batching (P25), canvas state save/restore balance (P26), tab-hidden pause (P23).
+1. Spawn `engineering-lead` to map generated assets into `config.js` and engine loops (see [asset-mapping.md](references/asset-mapping.md) — atlas JSON slices become the new mapping entry per [tech-art.md](references/tech-art.md) §3.1).
+2. **Pre-flight**: Consult [pitfalls.md](references/pitfalls.md) for integration-time traps — panel lifecycle (P01/P02), asset path mapping (P06), canvas blur/DPR (P03/P04), frame-rate independence (P10), pointer events (P14). Also apply [design-principles.md](references/design-principles.md) perf/architecture rules — fixed-timestep loop, object pooling (P22), dirty-flag updates (P24), draw-call batching (P25), canvas state save/restore balance (P26), tab-hidden pause (P23). **And apply [tech-art.md](references/tech-art.md) rendering rules** — pre-bake static layers & lightmaps (§3–§4), zero `filter`/`shadowBlur` (§1), additive layer caps (§4.2), per-platform effect tiers (§5), budget table checks (§6).
 3. Preserve native Canvas 2D rendering pipeline and fallback mechanisms (`PNG -> SVG -> Emoji`).
 4. Run automated registry check `node scripts/verify_integration.js` and logic tests.
-5. **Gate 4**: All logic tests and integration checks return 100% PASS.
+5. **Gate 4**: All logic tests and integration checks return 100% PASS **plus the tech-art render performance checklist** ([tech-art.md](references/tech-art.md) §10 Gate 4): per-frame drawImage/source-switch/particle/additive counts within budget, zero filter/shadowBlur, static layers pre-baked, pixel-art integer scaling & HD dpr ≤2, low-tier profile holds 30FPS.
 
 ### Stage 5: Vercel Deployment & Cloud DB (Vercel 部署与 Turso 云数据库)
 - **Role**: `release-ops-lead`
@@ -112,9 +113,9 @@ graph TD
 
 | Trigger Keyword / Focus | Spawn Target | Primary Deliverable |
 |-------------------------|--------------|---------------------|
-| GDD, 概念, 创意, grill-me, 关卡, 地图, 流程, 节奏, 遭遇, 数值, 叙事 | `design-strategist` | System & Game Design, GDD, Grill-me Interview, **Level Design** (see `references/level-design.md`) |
+| GDD, 概念, 创意, grill-me, 关卡, 地图, 流程, 节奏, 遭遇, 数值, 叙事, 剧情, 角色, 对话, 世界观 | `design-strategist` | System & Game Design, GDD, Grill-me Interview, **Level Design** (see `references/level-design.md`), **Narrative Design** (see `references/narrative-design.md`) |
 | 架构, 引擎, 代码, 性能, 集成, 接入 | `engineering-lead` | Code Architecture, Canvas 2D Engine Integration |
-| 美术, 视觉, 资产规格, 特效, 图标 | `art-director` | Art Specs & `agnes-ai` Image Generation |
+| 美术, 视觉, 资产规格, 特效, 图标, 图集, 材质, 渲染, 粒子, 性能优化, 技术美术 | `art-director` | Art Specs & `agnes-ai` Image Generation, **Technical Art** (see `references/tech-art.md`) — 渲染方案/VFX 实现/资产预算，`engineering-lead` 配合实现 |
 | 音乐, 音效, 混音 | `audio-director` | SFX & BGM Implementation Strategy |
 | 测试, 冒烟, 回归, 质量门 | `quality-lead` | Test Suite Execution & Gate Verdicts |
 | 发布, 部署, vercel, 线上链接 | `release-ops-lead` | Vercel Deployment & Secret Verification |
@@ -154,6 +155,8 @@ graph TD
 - ⚠️ [pitfalls.md](references/pitfalls.md) — Known pitfalls & best practices (UI lifecycle, Canvas/WebGL, assets, perf/memory, cross-browser/mobile, backend/deploy, toolchain). 30 entries (P01–P30). Consult before Stage 4 & 5.
 - 📐 [design-principles.md](references/design-principles.md) — Design/Art/Multiplayer principles (30-sec core loop, Bartle, art naming & pixel rules, architecture patterns, perf budget, server-authoritative netcode). Route to during Stage 2/3/4 for quality, not just pitfalls.
 - 🧩 [systems-mechanics.md](references/systems-mechanics.md) — **游戏系统与机制设计模块**（程序性方法论：Fun Hypothesis → Design Pillars → 三层核心循环 → 机制活检 → 经济 Sources/Sinks 账本 → 数值 Tuning 纪律 → Juice 规格 → 系统交互矩阵 → Playtest 失败信号）。Stage 2 `design-strategist` 主路由，Gate 2 必查。
-- 🗺️ [level-design.md](references/level-design.md) — **游戏关卡设计模块**（程序性空间设计方法论：Level Intent → Shape Language → Pacing Arc → Flow Diagram → Encounter Design → Navigation Readability → Environmental Storytelling → 空间教学阶梯 → Blockout Spec → H5 约束 → 关卡 Playtest 失败信号）。与 systems-mechanics.md 并列主路由，Gate 2 必查。
+- 🗺️ [level-design.md](references/level-design.md) — **游戏关卡设计模块**（程序性空间设计方法论：Level Intent → Shape Language → Pacing Arc → Flow Diagram → Encounter Design → Navigation Readability → Environmental Storytelling → 空间教学阶梯 → Blockout Spec → H5 约束 → 关卡 Playtest 失败信号 → §12 可复用模式库 → §13 完整示例关卡 → §14 关卡×系统×数值联动检查）。与 systems-mechanics.md 并列主路由，Gate 2 必查。
+- 📖 [narrative-design.md](references/narrative-design.md) — **游戏叙事设计模块**（程序性叙事方法论：Narrative Core → 角色架构（Desire/Need + Voice Pillars）→ 叙事节拍图 → 叙事×玩法对齐矩阵 → 对话规范 → Lore 三层交付 → 环境叙事一致性 → 叙事张力注入点 → H5 叙事约束 → 叙事 Playtest 失败信号 → **§11 可复用叙事模式库 → §12 完整示例叙事章节 → §13 叙事×系统×关卡三方联动检查**）。与 systems-mechanics / level-design 并列主路由，Gate 2 必查。
+- 🎨 [tech-art.md](references/tech-art.md) — **技术美术设计模块**（Canvas 2D 视觉层方法论：渲染成本模型 → 资产技术规格（尺寸/内存/格式）→ 精灵图集与预烘焙 → 无光照氛围方案（lightmap/混合模式/overlay）→ VFX 效果-实现-成本矩阵 → 美术性能预算表 → 像素/HD 双轨 → 色彩技术 → 移动端降级档位 → Gate 3/4 技术审查清单）。Stage 3/4 `art-director` 主路由 + `engineering-lead` 配合，Gate 3/4 必查。
 - 🐍 [make_transparent.py](scripts/make_transparent.py) — Automated PNG alpha transparency tool.
 - ⚡ [verify_integration.js](scripts/verify_integration.js) — Automated integration & asset registry check script.

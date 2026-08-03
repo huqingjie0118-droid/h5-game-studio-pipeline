@@ -36,6 +36,10 @@ For the full procedural method — three-layer loop, economy ledger, tuning disc
 - **Pacing Preference**: Relentless tension (action), Alternating tension/release (adventure), or Explore-then-explode (survival/roguelike)? *(对应 `level-design.md §3` 的弧线类型)*
 - **Mechanic Teaching Style**: Environment-only teaching (no text popups), Light tutorial overlays, or Skip teaching (assume player knowledge)? *(决定 `level-design.md §8` 空间教学阶梯的强度)*
 - **Exploration Reward Density**: Dense (every corner has loot), Sparse (rewards are landmarks), or Hidden-optional (rewards require backtracking)?
+- **Narrative Structure**: Three-act with clear beats, Fragmented environmental lore only (no cutscenes), or Light vignettes between gameplay? *(见 `narrative-design.md §3`)*
+- **Protagonist Setup**: Silent self-insert (player projection), Defined character with own arc, or Ensemble cast? *(决定主角 Desire/Need 冲突怎么写——见 `narrative-design.md §2`)*
+- **Story Delivery**: Text-block lore (idle), Dialogue-tree conversations, Environment-only storytelling, or Minimal (barely-there story)? *(形式由玩法节奏决定——见 `narrative-design.md §9`)*
+- **Narrative Density**: Sparse (story is seasoning), Medium (story motivates sessions), or Heavy (story is the progression reward)?
 - **VFX & Juice**: Screen shake, floating combat text (FCT), particle trails, boss break-bar animations?
 
 ### Tier 3: Progression, Stats & Economy (Dynamics)
@@ -88,5 +92,10 @@ The grill-me interview is DONE only when ALL hold:
 10. **Flow Diagram** drawn: every fork has a visible optional reward + merge point; no true dead ends — see `level-design.md §4`.
 11. **Encounter Table** filled: every encounter has entry read time, ≥2 tactical options, and a fallback position — see `level-design.md §5`.
 12. **Navigation readability checklist** all boxes ticked (3-second exit test, light guidance, no fake-exit dead ends) — see `level-design.md §6`.
+13. **Narrative Core** written (theme question + logline + narrative pillars) and the theme implies ≥1 gameplay-bound narrative decision — see `narrative-design.md §1`.
+14. **Protagonist Desire/Need conflict** set (they must oppose) — see `narrative-design.md §2`.
+15. **Beat Sheet** drafted: every beat carries a gameplay delivery point; **Alignment Matrix** has no empty rows (every beat ≥1 gameplay consequence) — see `narrative-design.md §3–§4`.
+16. **Dialogue sample** passes the "would a real person say this" test + Voice Pillars (no as-you-know, no exposition-disguised-as-conversation) — see `narrative-design.md §5`.
+17. **Tier 1 critical path** is comprehensible without any Tier 2/3 content; **World Bible** has no internal contradictions — see `narrative-design.md §6`.
 
 If any fails, keep interviewing or patch the GDD — do not pass Gate 2.

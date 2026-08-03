@@ -18,9 +18,10 @@ The studio operates on a 1 Orchestrator + 6 Specialist model.
 - **Outputs**: Code modifications, runnable game state.
 
 ## 4. art-director (林绘澄 - 美术总监)
-- **Role**: Visual Director & Asset Production Lead
-- **Tasks**: Visual spec creation, `agnes-ai` prompt construction, asset batch generation and transparent background processing.
-- **Outputs**: PNG assets in `art-app/assets/` and `assets/weapons/`.
+- **Role**: Visual Director, Asset Production Lead & Technical Artist
+- **Tasks**: Visual spec creation, `agnes-ai` prompt construction, asset batch generation and transparent background processing, **technical art** — asset tech specs (dimensions/memory/atlas per `tech-art.md` §2–§3), pre-bake assets (lightmaps/glows/backgrounds per §3–§4), VFX implementation & budget specs (§5), render performance budget compliance (§6), low-tier degradation profiles (§9).
+- **Outputs**: PNG assets in `art-app/assets/` and `assets/weapons/`, atlas JSON manifests, pre-baked canvas layers, VFX spec table, Gate 3/4 tech-art checklist verdicts.
+- **Tech-art partnership**: implements rendering approaches with `engineering-lead`; owns the visual-layer frame budget, engineering-lead owns the code path that spends it.
 
 ## 5. audio-director (阮和鸣 - 音乐音效)
 - **Role**: Audio Director

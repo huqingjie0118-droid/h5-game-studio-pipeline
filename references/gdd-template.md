@@ -15,6 +15,8 @@
   1. *Pillar 1*: [e.g. Visceral Combat & Combo Scaling — *experience*, not a feature list]
   2. *Pillar 2*: [e.g. Deep Equipment Rarity & Crafting]
   3. *Pillar 3*: [e.g. Serverless Cloud Economy & Auction House]
+- **Narrative Pillar** (1–2 条，从 Fun Hypothesis 推导，服务不到即砍；详见 `references/narrative-design.md §1`):
+  1. *Narrative Pillar*: [e.g. "力量皆有代价"——每次变强伴随可感的叙事损耗；必须是可证伪的体验陈述]
 
 ---
 
@@ -137,6 +139,62 @@ Time   | Activity Type | Tension | Notes
 ---
 
 ## 10. Asset & Visual Spec Manifest
-- **Character Art**: `art-app/assets/<classKey>_front.png` (512x512 PNG)
-- **Weapon Icons**: `assets/weapons/<weaponType>.png` (512x512 PNG)
-- **Skill Badges**: `art-app/assets/icon_<skillId>.png` (256x256 PNG)
+> 技术规格完整方法论见 `references/tech-art.md`。以下每一项含**技术参数**（尺寸/内存/图集/预烘焙），Stage 3 生成前由 `art-director` 按 `tech-art.md §2–§4` 填齐，Gate 3 必查。
+
+- **Character Art**: `art-app/assets/<classKey>_front.png` — 512×512 PNG，进 `char.atlas`
+- **Weapon Icons**: `assets/weapons/<weaponType>.png` — 256×256 PNG，进 `ui.atlas`
+- **Skill Badges**: `art-app/assets/icon_<skillId>.png` — 256×256 PNG，进 `ui.atlas`
+- **Texture Memory Budget**: 移动端 ≤64MB / 桌面 ≤128MB（`tech-art.md §2`），超了先算总账再生成
+- **Atlas 规划**: `ui.atlas`（图标/面板）、`fx.atlas`（粒子/特效）、`char.atlas`（角色/敌人）——按用途分集，留边 ≥2px
+- **Pre-bake 清单**: 静态背景 / 光照贴图 lightmap / 发光光晕 / 缩放版本（1x/2x）——全部离线预渲染（`tech-art.md §3.2/§4`）
+- **VFX Spec 表**: 每个 Juice 效果标注实现方式 + 运行时成本 + 平台档位（`tech-art.md §5`）
+- **降级档位**: High（桌面）/ Medium（默认移动）/ Low（低端机）三档配置，纯视觉降级不改玩法判定（`tech-art.md §9`）
+
+---
+
+## 11. Narrative & Lore Design
+> 完整方法论见 `references/narrative-design.md`。以下每一项都是 Gate 2 检查项，缺一项 = GDD 不完整。
+
+### 11.1 Narrative Core（叙事核心）
+- **Theme Question** (主题问题): [这游戏在问玩家什么问题；必须能推导 ≥1 个与核心玩法绑定的叙事决策]
+- **Logline**: [一句话故事钩子]
+- **Narrative Pillars**: [1–2 条，可证伪的体验陈述，服务不到即砍]
+
+### 11.2 Protagonist & Core Conflict（主角核心冲突）
+- **Desire（想要）**: [意识层面的目标]
+- **Need（需要）**: [真正需要的东西，与 Desire 冲突]
+- **Core Conflict**: [Desire 与 Need 如何对立 = 故事发动机]
+
+### 11.3 Relationship Matrix（角色关系矩阵）
+| 角色 A | 角色 B | 关系类型 | 立场冲突 | 首次揭示点 |
+|--------|--------|----------|----------|------------|
+| [主角] | [宗主] | [师徒/利用] | [求真相 vs 藏真相] | [第 2 幕密卷] |
+
+### 11.4 Beat Sheet（叙事节拍图）
+```
+Beat # | 节拍名称 | 幕 | 认知变化（玩家知道了什么） | 玩法交付点（何时触发）
+-------|----------|----|---------------------------|---------------------
+[B01]  | [献祭开场]| [1]| [力量要付出代价]          | [教学关 Boss 后]
+...
+```
+
+### 11.5 Narrative-Gameplay Alignment Matrix（叙事×玩法对齐）
+> 铁律：每个核心节拍 ≥1 条玩法后果，后果须在 2 场景内可感知；无后果的节拍回炉。
+
+| 故事节拍 | 玩法后果 | 玩家感受 | 对齐类型（系统联动/机制解锁/数值奖惩/世界状态） |
+|----------|----------|----------|------------------------------------------------|
+| [背叛揭晓] | [失去传送+势力怪刷新] | [背叛实感] | [系统联动] |
+
+### 11.6 Dialogue Voice Pillars（对话声音支柱）
+> 每个有台词的 NPC 一份：Vocabulary / Sentence Rhythm / Topics They Avoid / Subtext Default / What They Would NEVER Say。无 Pillar 的角色不给台词。对话须过 4 条规范：真人会说测试 / 禁 as-you-know / 每节点有戏剧功能 / 单段 ≤3 轮 ≤20 字/句。
+
+### 11.7 Lore Tiering（叙事交付分层）
+- **Tier 1 表面**（所有玩家，主线自洽的底线）: [主线情节/角色动机/核心冲突]
+- **Tier 2 探索者**（主动探索）: [世界观细节/支线故事/阵营史]
+- **Tier 3 深层**（考据玩家）: [隐藏真相/线索闭环/元叙事]
+
+### 11.8 World Bible（世界圣经快速条目）
+- **Timeline**: [关键事件与时间]
+- **Factions**: [势力：目标/哲学/与玩家关系]
+- **Rules of the World**: [可能/不可能的边界]
+- **Banned Retcons**: [Tier 1 确立、永不可推翻的事实清单]
